@@ -1,0 +1,57 @@
+<!-- templates/dashboard/sensors.html -->
+{% extends 'dashboard/base.html' %} {% block content %}
+<div id="sensors-container">
+  <h2 class="sensor-title">SYSTEM_DIAGNOSTICS // TELEMETRY_ARRAY</h2>
+
+  <div class="sensor-grid">
+    <!-- Core Systems Module -->
+    <div class="sensor-card">
+      <div class="card-header">CORE_STABILITY</div>
+      <div class="card-content">
+        <div class="metric">
+          <span class="label">CPU_LOAD:</span>
+          <span class="value">{{ cpu_usage }}%</span>
+        </div>
+        <div class="metric">
+          <span class="label">MEM_CAPACITY:</span>
+          <span class="value">{{ ram_usage }}%</span>
+        </div>
+        <div class="metric">
+          <span class="label">PROCESSOR_COUNT:</span>
+          <span class="value">{{ cpu_count }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage Module -->
+    <div class="sensor-card">
+      <div class="card-header">DATA_STORAGE_ARRAY</div>
+      <div class="card-content">
+        <div class="metric">
+          <span class="label">DISK_OCCUPANCY:</span>
+          <span class="value">{{ disk_usage }}%</span>
+        </div>
+        <div class="metric">
+          <span class="label">TOTAL_MEM_BANK:</span>
+          <span class="value">{{ ram_total }} GB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Network Module -->
+    <div class="sensor-card">
+      <div class="card-header">COMMS_LINK_SENSORS</div>
+      <div class="card-content">
+        <div class="metric">
+          <span class="label">SND_DATA:</span>
+          <span class="value">{{ net_io.tx_bytes }} bytes</span>
+        </div>
+        <div class="metric">
+          <span class="label">RCV_DATA:</span>
+          <span class="value">{{ net_io.rx_bytes }} bytes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

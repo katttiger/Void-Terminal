@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Void-Terminal | {{page_title}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+  </head>
+
+  <body class="terminal-body">
+    <nav id="global-nav">
+        <div class="nav-logo">VOID_OS v1.0</div>
+        <div class="nav-links">
+            <a href="{% url "index" %}" class="nav-item">BRIDGE</a>
+             <a href="#" class="nav-item">ARCHIVES</a>
+            <a href="sensors" class="nav-item">SENSORS</a>
+            <a href="#" class="nav-item">SETTINGS</a>
+        </div>
+    </nav>
+
+    <main id ="main-display">
+        {% block content %}
+                {% endblock %}
+
+    </main>
+    
+  </body>
+</html>
