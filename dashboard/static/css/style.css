@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #0a0a0a;
   color: #00ff41;
@@ -27,4 +31,32 @@ body {
   margin-top: 10px;
   padding-top: 10px;
   font-size: 1.1em;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.matrix-button {
+  display: block;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #00ff41;
+  border: 1px solid #00ff41;
+  background: rgba(0, 40, 0, 0.4);
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.matrix-button:hover {
+  background: #00ff41;
+  color: #0a0a0a;
+  box-shadow: 0 0 20px #00ff41;
+  transform: scale(1.05);
 }
