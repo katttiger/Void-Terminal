@@ -54,4 +54,45 @@
     </div>
   </div>
 </div>
+
+<script>
+  async function updateTelemetry() {
+    try {
+      const response = await fetch("/api/sensors/");
+      const data = await response.json();
+
+      const metrics = document.querySelectorAll(".metric");
+
+      // Mapping the JSON keys to the order they appear in the HTML
+      const mapping = {
+        "CPU_LOAD:": data.cpu_usage,
+        "MEM_CAPACITY:": data.ram_usage,
+        "DISK_OCCUPANCY:": data.disk_usage,
+        "SND_DATA:": data.net_io_tx,
+        "RCV_DATA:": data.net_io_rx,
+      };
+
+      metrics.forEach((metric) => {
+        const label = metric.querySelector(".label").innerText.trim();
+        if (mapping[label]) {
+          metric.querySelector(".value").innerText =
+            mapping[label] +
+            (label.includes("OCCUPANCY") ||
+            label.includes("LOAD") ||
+            label.includes("CAPACITY")
+              ? "%"
+              : " bytes");
+        }
+      });
+    } catch (error) {
+      console.error("Telemetry Link Failure:", error);
+    }
+  }
+
+  // Start the heartbeat: update every 1000ms
+  setInterval(updateTelemetry, 1000);
+  // Initial call to avoid 1s delay on load
+  updateTelemetry();
+</script>
+
 {% endblock %}
