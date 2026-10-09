@@ -1,15 +1,16 @@
 {% extends "dashboard/base.html" %} {% block content %}
-<div class="intel-container">
-  <div class="intel-header">
+<div class="weather-container">
+  <div class="weather-header">
     <span class="status-led"></span>WEATHER in {{city}}
   </div>
-  <div class="intel-body">
+
+  <div class="weather-body">
     <div class="scanning-line"></div>
     <div class="data-readout">
-      <span class="label">TARGET COORDINATES:</span>
-      <span class="value">{{city | upper}}</span>
+      <span class="weather-label">TARGET COORDINATES:</span>
+      <span class="weather-value">{{city | upper}}</span>
       <hr class="neon-divider" />
-      <span class="label">SENSORY DATA: </span>
+      <span class="weather-label">SENSORY DATA: </span>
       <span class="value highlight">{{weather}}</span>
     </div>
   </div>

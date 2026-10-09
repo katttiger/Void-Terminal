@@ -52,14 +52,15 @@ body {
   flex-direction: column;
   height: 100vh;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #main-display {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 #hud {
@@ -72,6 +73,7 @@ body {
   width: 80%;
   max-width: 800px;
   position: relative;
+  margin: 0 auto;
 }
 
 #console {
@@ -109,7 +111,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Add this to your style.css */
+/* Sensors */
 #sensors-container {
   padding: 20px;
   color: #00ff41;
@@ -179,13 +181,15 @@ body {
   text-shadow: 0 0 5px #00ff41;
 }
 
-.intel-container {
-  display: flex;
+/* Weather */
+.weather-container {
+  margin: 0 auto;
+  display: block;
   justify-content: center;
   align-items: center;
   height: 80vh;
 }
-.intel-card {
+.weather-card {
   background: rgba(20, 20, 25, 0.8);
   border: 1px solid #00f2ff;
   box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
@@ -195,7 +199,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.intel-header {
+.weather-header {
   color: #00f2ff;
   font-family: "Courier New", monospace;
   font-weight: bold;
@@ -215,11 +219,7 @@ body {
   font-family: "Courier New", monospace;
   line-height: 2;
 }
-.label {
-  color: #888;
-  font-size: 0.8rem;
-}
-.value {
+.weather-value {
   color: #fff;
   margin-left: 10px;
 }
@@ -236,4 +236,75 @@ body {
   background: rgba(0, 242, 255, 0.3);
   top: 0;
   animation: scan 3s linear infinite;
+}
+
+/* News */
+.feed-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 100vh; /* Changed from height to min-height */
+  overflow-y: auto;
+}
+.feed-header {
+  color: #ffb300;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ffb300;
+}
+.status-led.orange {
+  background: #ffb300;
+  box-shadow: 0 0 10px #ffb300;
+}
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.transmission-card {
+  background: rgba(15, 15, 20, 0.9);
+  border: 1px solid #444;
+  border-left: 4px solid #ffb300;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+.transmission-card:hover {
+  border-color: #ffb300;
+  box-shadow: 0 0 15px rgba(255, 179, 0, 0.3);
+  transform: translateY(-2px);
+}
+.card-content {
+  padding: 1.5rem;
+}
+.card-meta {
+  color: #666;
+  font-size: 0.7rem;
+  font-family: "Courier New", monospace;
+  margin-bottom: 10px;
+}
+.card-title {
+  color: #eee;
+  text-decoration: none;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 15px;
+}
+.card-footer {
+  color: #444;
+  font-size: 0.7rem;
+  font-family: "Courier New", monospace;
+  text-align: right;
+  border-top: 1px solid #222;
+  padding-top: 5px;
+}
+.status-ok {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
 }

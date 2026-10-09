@@ -49,16 +49,23 @@ def weather_report(request):
 
 
 def news_report(request):
-    news_url = "http://feeds.bbci.co.uk/news/world/rss.xml"
-    headlines = []
+    sector_feeds = {
+        "https://svt.se/rss.xml"
+    }
 
-    try:
-        feed = feedparser.parse(news_url)
-        for entry in feed.entries[:5]:
-            headlines.append({"title": entry.title, "link": entry.link})
-    except Exception:
-        headlines = [{"title": "News feed temporarily offline", "link": "#"}]
+    all_transmissions = []
 
-    return render(request, 'dashboard/news.html', {
-        'news': headlines
-    })
+    for url in sector_feeds:
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries:
+                all_transmissions.append({
+                    'title': entry.title,
+                    'link': entry.link,
+                    'published': entry.get('published', 'Unknown Stardate'),
+                    'summary': entry.get('summary', 'No further intel available.')
+                })
+        except Exception as e:
+            print(f"Signal interference from {url}: {e}")
+
+    return render(request, "dashboard/news.html", {"articles": all_transmissions[:10]})

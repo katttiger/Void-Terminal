@@ -1,4 +1,27 @@
-{% extends "dashboard/base.html" %}
+{% extends "dashboard/base.html" %} {% block content %}
 
-<h1>News</h1>
-{% block content %} {% endblock%}
+<div class="feed-container">
+  <div class="feed-header">
+    <span class="status-led orange"></span> GALACTIC INTELLIGENCE FEED: SECTOR
+    7-G
+  </div>
+  <div class="feed-grid">
+    {% for article in articles %}
+    <div class="transmission-card">
+      <div class="card-glow"></div>
+      <div class="card-content">
+        <div class="card-meta">
+          TRANSMISSION RECEIVED // STARDATE: {{ article.pubDate }}
+        </div>
+        <a href="{{ article.link }}" target="_blank" class="card-title"
+          >{{ article.title }}</a
+        >
+        <div class="card-footer">
+          DECRYPTING... <span class="status-ok">SUCCESS</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}
