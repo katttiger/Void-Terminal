@@ -1,11 +1,10 @@
 {% extends "dashboard/base.html" %} {% block content %}
 <div class="weather-container">
   <div class="weather-header">
-    <span class="status-led"></span>WEATHER in {{city}}
+    <span class="status-led"></span>WEATHER in {{city }}
   </div>
 
   <div class="weather-body">
-    <div class="scanning-line"></div>
     <div class="data-readout">
       <span class="weather-label">TARGET COORDINATES:</span>
       <span class="weather-value">{{city | upper}}</span>
@@ -14,6 +13,18 @@
       <span class="value highlight">{{weather}}</span>
     </div>
   </div>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input
+      type="text"
+      class="form-control"
+      id="inputTitle"
+      placeholder="Enter location"
+      name="location"
+    />
+    <input type="submit" value="Change location" />
+  </form>
 </div>
 
 {% endblock %}

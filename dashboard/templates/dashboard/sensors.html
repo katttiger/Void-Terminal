@@ -12,7 +12,7 @@
           <span class="value">{{ cpu_usage }}%</span>
         </div>
         <div class="metric">
-          <span class="label">MEM_CAPACITY:</span>
+          <span class="label">RAM_USED:</span>
           <span class="value">{{ ram_usage }}%</span>
         </div>
         <div class="metric">
@@ -54,6 +54,7 @@
   </div>
 </div>
 
+{% comment %} A script to automatically update the digits on the page for a dynamic feel. {% endcomment %}
 <script>
   async function updateTelemetry() {
     try {

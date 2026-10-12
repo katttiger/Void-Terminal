@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
+/* Nav-header */
+
 #global-nav {
   display: flex;
   justify-content: space-between;
@@ -48,21 +50,9 @@ body {
   background-color: #0a0a0a;
   color: #00ff41;
   font-family: "Courier New", Courier, monospace;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 0;
-  overflow: auto;
 }
 
-#main-display {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-}
-
+/* HUD - bridge */
 #hud {
   border: 2px solid #00ff41;
   padding: 20px;
@@ -181,24 +171,33 @@ body {
   text-shadow: 0 0 5px #00ff41;
 }
 
-/* Weather */
+/* Weather
+note: Grid made a good view
+*/
 .weather-container {
-  margin: 0 auto;
-  display: block;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 80vh;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
-.weather-card {
+
+.weather-body {
   background: rgba(20, 20, 25, 0.8);
   border: 1px solid #00f2ff;
   box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
   padding: 2rem;
   border-radius: 10px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px; /* Changed from width to max-width for responsiveness */
   position: relative;
   overflow: hidden;
+  text-align: left; /* Keeps the text aligned left inside the centered card */
 }
+
 .weather-header {
   color: #00f2ff;
   font-family: "Courier New", monospace;
@@ -215,6 +214,7 @@ body {
   margin-right: 10px;
   animation: blink 1s infinite;
 }
+
 .data-readout {
   font-family: "Courier New", monospace;
   line-height: 2;
@@ -229,13 +229,29 @@ body {
   border-top: 1px solid #333;
   margin: 10px 0;
 }
-.scanning-line {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 242, 255, 0.3);
-  top: 0;
-  animation: scan 3s linear infinite;
+
+form {
+  margin-top: 2rem;
+  display: flex;
+  gap: 10px;
+}
+
+.form-control {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00f2ff;
+  color: #00f2ff;
+  padding: 5px 10px;
+  font-family: "Courier New", monospace;
+}
+
+input[type="submit"] {
+  background: #00f2ff;
+  color: #0a0a0a;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
 }
 
 /* News */
@@ -246,6 +262,7 @@ body {
   min-height: 100vh; /* Changed from height to min-height */
   overflow-y: auto;
 }
+
 .feed-header {
   color: #ffb300;
   font-family: "Courier New", monospace;
@@ -255,6 +272,7 @@ body {
   letter-spacing: 2px;
   text-shadow: 0 0 10px #ffb300;
 }
+
 .status-led.orange {
   background: #ffb300;
   box-shadow: 0 0 10px #ffb300;

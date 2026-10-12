@@ -36,13 +36,18 @@ def sensors(request):
 
 
 def weather_report(request):
-    city = "Stockholm"
-    url = f"https://wttr.in/{city}?format=3"
+    city = "NONE"
 
     try:
+        if (request.method == "POST"):
+            city = request.POST.get("location")
+
+        url = f"https://wttr.in/{city}?format=2"
+
         response = requests.get(url)
+        response.raise_for_status()
         weather_data = response.text
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         weather_data = {f'Unable to fetch weather data. Error: {e}'}
 
     return render(request, 'dashboard/weather.html', {'weather': weather_data, 'city': city})
