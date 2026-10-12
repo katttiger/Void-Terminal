@@ -55,7 +55,8 @@ def weather_report(request):
 
 def news_report(request):
     sector_feeds = {
-        "https://svt.se/rss.xml"
+        "https://svt.se/rss.xml",
+        "https://di.se/rss.xml"
     }
 
     all_transmissions = []
