@@ -1,13 +1,36 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 import psutil
 import requests
 import feedparser
+from datetime import datetime
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 # Create your views here.
 
 
 def index(request):
     return render(request, "dashboard/index.html")
+
+
+def world_data_time(request):
+    place = "Stockholm"
+    continent = "Europe"
+    try:
+        if (request.method == "POST"):
+            place = request.POST.get("place")
+            continent = request.POST.get("continent")
+
+        place = place.replace(' ', '_')
+        key = f"{continent}/{place}"
+        current_date = datetime.now(tz=ZoneInfo(key)).today()
+        current_time = datetime.now(tz=ZoneInfo(key)).time()
+    except ZoneInfoNotFoundError as e:
+        current_date = f"{e}"
+        current_time = f"{e}"
+    except ValueError as e:
+        current_date = f"{e}"
+        current_time = f"{e}"        
+    return render(request, "dashboard/time.html", {'date': current_date, 'time': current_time, 'place': place})
 
 
 def sensor_data(request):
